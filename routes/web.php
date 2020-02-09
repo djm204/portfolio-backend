@@ -9,8 +9,19 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
+$pages = [
+    '/',
+    '/contact',
+    '/tech-summary',
+    '/cat-stats'
+];
 
-Route::get('/', function () {
-    return view('app');
-});
+foreach ($pages as $p) {
+    Route::get($p, function () {
+        return view('app');
+    });
+}
+
+Route::get('/contactInfo', 'ContactController@get')
+    ->name('get-contact-info');
