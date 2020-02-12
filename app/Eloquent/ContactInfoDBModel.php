@@ -33,7 +33,7 @@ class ContactInfoDBModel extends Model
         return new ContactInfoModel(
             $data['type'],
             $data['contactProfileUrl'],
-            $data{'iconClass'}
+            $data['iconClass']
         );
     }
 }
