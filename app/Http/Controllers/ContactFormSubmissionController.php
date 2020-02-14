@@ -17,15 +17,19 @@ class ContactFormSubmissionController extends BaseController
         $data = $request->all();
         $from = $data['email'];
         $formattedMessage = $this->buildMessage($data);
+        try {
+            Mail::raw($formattedMessage, function ($message) use ($from) {
+                $message->from($from, 'Portfolio Contact Form Submission');
+                $message->replyTo($from);
+                $message->to(env('CONTACT_FORM_RECIPIENT'));
+            });
 
-        Mail::raw($formattedMessage, function ($message) use ($from) {
-            $message->from($from, 'Portfolio Contact Form Submission');
-            $message->replyTo($from);
-            $message->to(env('CONTACT_FORM_RECIPIENT'));
-        });
+            if (Mail::failures()) {
+                return response()->json(['errors' => 'Something went wrong, we are looking into it. Try again soon.']);
+            }
 
-        if (Mail::failures()) {
-            return response()->json(['errors' => 'Something went wrong, we are looking into it. Try again soon.']);
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
         }
 
         return response()->json(['success' => 'Thank you for your message! Someone will contact you shortly.']);
