@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/sendContactForm', ['middleware' => 'throttle:50,10', 'uses' => 'ContactFormSubmissionController@sendMail', 'as' => 'send-contact-form-email']);
+Route::post('/sendContactForm', ['middleware' => 'throttle:3,10', 'uses' => 'ContactFormSubmissionController@sendMail', 'as' => 'send-contact-form-email']);
