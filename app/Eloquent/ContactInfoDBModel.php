@@ -3,8 +3,8 @@
 namespace App\Eloquent;
 
 use App\Models\ContactInfoModel;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection as DBCollection;
+use Illuminate\Database\Eloquent\Model;
 
 class ContactInfoDBModel extends Model
 {
@@ -23,7 +23,7 @@ class ContactInfoDBModel extends Model
 
     public function getAll(): DBCollection
     {
-        return $this->all();
+        return $this->all()->sortBy('type');
     }
 
     public function toModel(): ContactInfoModel

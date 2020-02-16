@@ -37,7 +37,8 @@ class ContactInfoModel
         $this->setIconClass($iconClass);
     }
 
-    public function setType(string $type) {
+    public function setType(string $type)
+    {
         $this->type = $type;
     }
 
@@ -46,7 +47,8 @@ class ContactInfoModel
         return $this->type;
     }
 
-    public function setContactProfileUrl(string $contactProfileUrl) {
+    public function setContactProfileUrl(string $contactProfileUrl)
+    {
         $this->contactProfileUrl = $contactProfileUrl;
     }
 
@@ -55,7 +57,8 @@ class ContactInfoModel
         return $this->contactProfileUrl;
     }
 
-    public function setIconClass(string $iconClass) {
+    public function setIconClass(string $iconClass)
+    {
         $this->iconClass = $iconClass;
     }
 
@@ -69,7 +72,7 @@ class ContactInfoModel
         return [
             'type' => $this->getType(),
             'contactProfileUrl' => $this->getContactProfileUrl(),
-            'iconClass' => $this->getIconClass()
+            'iconClass' => $this->getIconClass(),
         ];
     }
 }

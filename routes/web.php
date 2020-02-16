@@ -14,7 +14,7 @@ $pages = [
     '/',
     '/contact',
     '/tech-summary',
-    '/cat-stats'
+    '/cat-stats',
 ];
 
 foreach ($pages as $p) {

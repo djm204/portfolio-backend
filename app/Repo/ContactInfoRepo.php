@@ -2,8 +2,8 @@
 
 namespace App\Repo;
 
-use App\Models\ContactInfoModel;
 use App\Eloquent\ContactInfoDBModel;
+use App\Models\ContactInfoModel;
 use Illuminate\Database\Eloquent\Collection as DBCollection;
 
 class ContactInfoRepo

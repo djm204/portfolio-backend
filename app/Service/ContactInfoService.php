@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Repo\ContactInfoRepo;
-use Illuminate\Support\Collection;
 
 class ContactInfoService
 {
@@ -18,14 +17,16 @@ class ContactInfoService
         $this->contactInfoRepo = new ContactInfoRepo();
     }
 
-    public function getAll(): Collection
+    public function getAll(): array
     {
         $data = $this->contactInfoRepo->getAll();
 
-        $preparedResponse = $data->map(function ($contact) {
-            return $contact->toModel()->toArray();
-        });
-        
+        $preparedResponse;
+
+        foreach ($data as $contact) {
+            $preparedResponse[] = $contact->toModel()->toArray();
+        };
+
         return $preparedResponse;
     }
 }

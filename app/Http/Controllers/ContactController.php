@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Service\ContactInfoService;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ContactController extends Controller
 {
@@ -22,7 +22,8 @@ class ContactController extends Controller
         $this->contactInfoService = new ContactInfoService();
     }
 
-    public function get(Request $request): JsonResponse {
-        return response()->json($this->contactInfoService->getAll());
+    public function get(Request $request): Response
+    {
+        return response($this->contactInfoService->getAll());
     }
 }
