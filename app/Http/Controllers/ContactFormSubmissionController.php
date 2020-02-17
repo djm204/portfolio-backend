@@ -19,7 +19,7 @@ class ContactFormSubmissionController extends BaseController
         $name = $data['name'];
         $formattedMessage = $this->buildMessage($data);
         try {
-            Mail::raw($formattedMessage, function ($message) use ($from) {
+            Mail::raw($formattedMessage, function ($message) use ($from, $name) {
                 $message->from($from, 'Portfolio Contact Form Submission');
                 $message->subject("New message from: " . $name);
                 $message->replyTo($from);
@@ -27,15 +27,15 @@ class ContactFormSubmissionController extends BaseController
             });
 
             if (Mail::failures()) {
-                return response()->json(['errors' => 'Something went wrong, we are looking into it. Try again soon.']);
+                return response()->json(['success' => false, 'message' => 'Something went wrong, we are looking into it. Try again soon.']);
             }
 
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
-            return response()->json(['errors' => 'Something went wrong, we are looking into it. Try again soon.']);
+            return response()->json(['success' => false, 'message' => 'Something went wrong, we are looking into it. Try again soon.']);
         }
 
-        return response()->json(['success' => 'Thank you for your message! Someone will contact you shortly.']);
+        return response()->json(['success' => true, 'message' => 'Thank you for your message! I will review your message shortly and get back to you!']);
     }
 
     public function buildMessage($data)
