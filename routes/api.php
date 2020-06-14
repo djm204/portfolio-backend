@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/sendContactForm', ['middleware' => 'throttle:3,10', 'uses' => 'ContactFormSubmissionController@sendMail', 'as' => 'send-contact-form-email']);
+Route::get('/techImages', ['uses' => 'TechImagesController@getImages', 'as' => 'get-tech-images']);
